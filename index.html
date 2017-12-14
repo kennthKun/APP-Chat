@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="index/css/main.css">
+        <style>
+        </style>
+    </head>
+    <body class="um-vp bc-bg" ontouchstart >
+        <div id="page_0" class="up ub ub-ver" tabindex="0">
+            <!--header开始-->
+            
+            <!--header结束--><!--content开始-->
+            <div id="content" class="ub-f1 tx-l t-bla bc-bg ub">
+
+            </div>
+            <!--content结束-->
+            <div id="footer" class="uf t-bla ub ubt bc-border" style="height: 3em;background-color:#FFFFFF">
+                <div class="ub ub-f1 tab" id="footer1">
+
+                </div>
+
+            </div>
+        </div>
+    </body>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+    <script src="js/appcan.tab.js"></script>
+    <script src="js/url.js"></script>
+    </body>
+
+    <script>
+        appcan.ready(function() {
+            var top = 0;
+            appcan.frame.open({
+                id : "content",
+                url : [{
+                    "inPageName" : "switch",
+                    "inUrl" : "main.html",
+                }, {
+                    "inPageName" : "radio",
+                    "inUrl" : "main_2.html",
+                }, {
+                    "inPageName" : "service",
+                    "inUrl" : "main.html",
+                }, {
+                    "inPageName" : "userCenter",
+                    "inUrl" : "main_2.html",
+                }],
+                top : top,
+                left : 0,
+                index : 0,
+                change : function(index, res) {
+                    console.log(index + " " + res);
+                    tabview.moveTo(res.multiPopSelectedIndex);
+                }
+            });
+            window.onorientationchange = window.onresize = function() {
+                appcan.frame.resize("content", 0, top);
+            }
+        });
+
+        var tabview = appcan.tab({
+            selector : "#footer1",
+            hasIcon : true,
+            hasAnim : false,
+            hasLabel : true,
+            hasBadge : true,
+            index : 0,
+            data : [{
+                label : "商标查询",
+                icon : "fa-search-minus"
+            }, {
+                label : "业务办理",
+                icon : "fa-bank"
+            },
+            {
+                label : "商标管家",
+                icon : "fa-clipboard"
+            }, {
+                label : "个人中心",
+                icon : "fa-user"
+
+            }]
+        });
+        tabview.on("click", function(obj, index) {
+            appcan.window.selectMultiPopover("content", index);
+        })
+        
+    </script>
+
+</html>
